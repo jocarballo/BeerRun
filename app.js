@@ -28,7 +28,14 @@ app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 const index = require("./routes/index");
 app.use("/", index);
 
+const { getBars } = require("./scripts/script.js")
+
+getBars(
+    startLocation = {longitude: 13.41749833, latitude:  52.492831362}, 
+    endLocation = {longitude: 13.4050169774, latitude: 52.5220308407});
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
+
 
 module.exports = app;
