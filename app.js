@@ -19,14 +19,19 @@ const app = express();
 require("./config")(app);
 
 // default value for title local
-const projectName = "pub_crawl";
-const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
+const projectName = "BeerRun";
 
-app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
+
+app.locals.title = `${projectName} created with IronLauncher`;
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
+
+const authRouter = require('./routes/auth'); // <== has to be added
+app.use('/', authRouter); // <== has to be added
+
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
