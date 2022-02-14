@@ -7,10 +7,13 @@ const userSchema = new Schema(
       type: String,
       unique: true
     },
-    password: String,
+    passwordHash: {
+      type: String,
+      required: [true, 'Password is required.']
+    },
     profilePicture: String,
-    beerRuns: {type: mongoose.Schema.Types.ObjectId, ref: 'BeerRun'},
-    favorites: {type: mongoose.Schema.Types.ObjectId, ref: 'BeerRun'},
+    beerRuns: {type: Schema.Types.ObjectId, ref: 'BeerRun'},
+    favorites: {type: Schema.Types.ObjectId, ref: 'BeerRun'},
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
