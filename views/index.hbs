@@ -1,2 +1,20 @@
 <h1>{{title}} 🚀</h1>
 <p>Welcome Ironhacker!</p>
+
+<div id="form">
+  <h2>Signup</h2>
+  <form action="/profile" method="POST">
+
+    <label> Username
+      <input type="text" name="username" placeholder="BeerRunner" />
+    </label>
+
+    <label> Password
+      <input type="password" name="password" placeholder="********" />
+    </label>
+
+    <button type="submit">Create account</button>
+
+    {{!-- error message will be added here --}}
+  </form>
+</div>
