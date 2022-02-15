@@ -33,6 +33,13 @@ const { getBars } = require("./scripts/script.js")
 const authRouter = require('./routes/auth'); // <== has to be added
 app.use('/', authRouter); // <== has to be added
 
+const profileRouter = require('./routes/profile.js');
+app.use('/', profileRouter); 
+
+const tripsRouter = require('./routes/trip.js');
+app.use('/', tripsRouter); 
+
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

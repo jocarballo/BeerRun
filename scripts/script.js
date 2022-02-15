@@ -2,7 +2,6 @@
 const axios = require('axios')
 const turf = require('turf');
 
-const ACCESS_TOKEN = "pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ"
 
 function getNearestBar(latitude, longitude) {
   return axios
