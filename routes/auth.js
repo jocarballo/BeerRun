@@ -31,8 +31,35 @@ router.post('/profile', (req, res, next) => {
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
+      res.render('profile', {user: userFromDB})
     })
     .catch(error => next(error));
 });
+
+router.post('/login', (req,res,next) => {
+  const {username, password} = req.body
+  User.findOne({username})
+  .then(userFromDB => {
+    if (!userFromDB) {
+      console.log("failed login")
+      res.render('index')
+      return
+    } else if (bcryptjs.compareSync(password, userFromDB.passwordHash)) {
+      res.render('profile', {user: userFromDB})
+    }
+  })
+})
+
+router.post('/home', (req,res,next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/home')
+  })
+})
+
+
+
+
+
 
 module.exports = router;
