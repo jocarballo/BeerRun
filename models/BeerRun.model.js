@@ -4,10 +4,12 @@ const { Schema, model } = require("mongoose");
 const beerRunSchema = new Schema(
   {
     name: String,
-    startPoint: String,
-    endPoint: String,
+    startLongitudePoint: Number,
+    endLongitudePoint: Number,
+    startLatitudePoint: Number,
+    endLatitudePoint: Number,
     numberOfStops: Number,
-    reviews: {type: mongoose.Schema.Types.ObjectId, ref: 'Review'},
+    reviews: {type: Schema.Types.ObjectId, ref: 'Review'},
 
   },
   {
