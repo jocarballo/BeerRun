@@ -2,12 +2,15 @@
 <div class="container">
       <nav class="nav-bar">
         <ul>
-          <a href="/" class="navItem">Home</a>
-          <a href="/" class="navItem">LogOut</a>
+          <a href="/home" class="navItem">Home</a>
         </ul>
       </nav>
 </div>
 
-
-
 <h1>Profile Page</h1>
+{{user.username}}
+
+
+<form action="/logout" method="POST">
+    <button>Logout</button>
+</form>
