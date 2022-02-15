@@ -4,11 +4,9 @@ const { Schema, model } = require("mongoose");
 const beerRunSchema = new Schema(
   {
     name: String,
-    startLongitudePoint: Number,
-    endLongitudePoint: Number,
-    startLatitudePoint: Number,
-    endLatitudePoint: Number,
-    numberOfStops: Number,
+    bars: [Map],
+    startLocation: [Number],
+    endLocation: [Number],
     reviews: {type: Schema.Types.ObjectId, ref: 'Review'},
 
   },

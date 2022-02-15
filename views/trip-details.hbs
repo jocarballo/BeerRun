@@ -1,0 +1,34 @@
+<h2>Here you can find all of the details about {{beerRun.name}}!</h2>
+ {{#each barsForMapBox}}
+    key: {{@key}} value = {{@value}}
+{{/each}}
+ <div id='map'></div>
+
+      <script>
+
+      mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ';
+
+      const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [13.381777, 52.531677],
+      zoom: 9
+      });
+
+      // need to decode JSON 
+      var decodedJsonStr = decodeURIComponent("{{{markersJsonStr}}}");
+      // create object with geo information from json string
+      const geojson = JSON.parse(decodedJsonStr);
+      console.log("Geo", geojson);
+
+      // add markers to map
+      for (const feature of geojson.features) {
+        // create a HTML element for each feature
+         const el = document.createElement('div');
+         el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+      }
+
+      </script>
