@@ -18,6 +18,9 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
+//session info here
+require('./config/session.config')(app);
+
 // default value for title local
 const projectName = "BeerRun";
 
@@ -30,14 +33,14 @@ app.use("/", index);
 
 const { getBars } = require("./scripts/script.js")
 
-const authRouter = require('./routes/auth'); // <== has to be added
-app.use('/', authRouter); // <== has to be added
+const authRouter = require('./routes/auth');
+app.use('/', authRouter);
 
 const profileRouter = require('./routes/profile.js');
-app.use('/', profileRouter); 
+app.use('/', profileRouter);
 
 const tripsRouter = require('./routes/trip.js');
-app.use('/', tripsRouter); 
+app.use('/', tripsRouter);
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
