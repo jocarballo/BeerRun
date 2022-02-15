@@ -2,6 +2,7 @@
 const axios = require('axios')
 const turf = require('turf');
 
+const ACCESS_TOKEN = "pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ";
 
 function getNearestBar(latitude, longitude) {
   return axios
@@ -47,12 +48,7 @@ function getPointsBetweenLocations(startLocation, endLocation) {
 function getBars(startLocation, endLocation) {
     let locations = getPointsBetweenLocations(startLocation, endLocation);
 
-    Promise.all(locations.map(location => getNearestBar(location.latitude, location.longitude)))
-      .then(bars => {
-        console.log(bars);
-      })
-      .catch(err => console.log(err));
-    
+    return Promise.all(locations.map(location => getNearestBar(location.latitude, location.longitude)))
 }
 
 module.exports = { getBars };
