@@ -8,6 +8,7 @@
 
       mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ';
 
+
       const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v10',
@@ -15,7 +16,7 @@
       zoom: 9
       });
 
-      // need to decode JSON 
+      // need to decode JSON
       var decodedJsonStr = decodeURIComponent("{{{markersJsonStr}}}");
       // create object with geo information from json string
       const geojson = JSON.parse(decodedJsonStr);

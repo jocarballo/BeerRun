@@ -11,7 +11,7 @@ const User = require('../models/User.model');
 // the get route skipped
 
 // POST route ==> to process form data
-router.post('/profile', (req, res, next) => {
+router.post('/signUp', (req, res, next) => {
   // console.log("The form data: ", req.body);
 
   const { username, password } = req.body;
@@ -20,7 +20,7 @@ router.post('/profile', (req, res, next) => {
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
-      return User.create({
+       User.create({
         // username: username
         username,
         // passwordHash => this is the key from the User model
@@ -31,7 +31,7 @@ router.post('/profile', (req, res, next) => {
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
-      res.render('profile', {user: userFromDB})
+      res.redirect('/profile')
     })
     .catch(error => next(error));
 });
@@ -45,9 +45,12 @@ router.post('/login', (req,res,next) => {
       console.log("failed login")
       res.render('index')
       return
-    } else if (bcryptjs.compareSync(password, userFromDB.passwordHash)) {
+    }
+     if (bcryptjs.compareSync(password, userFromDB.passwordHash)) {
+      console.log('authenticated')
+      console.log(userFromDB)
       req.session.currentUser = userFromDB;
-      res.render('profile', {user: userFromDB})
+      res.redirect('/profile')
     }
   })
 })

@@ -12,8 +12,8 @@ const userSchema = new Schema(
       required: [true, 'Password is required.']
     },
     profilePicture: String,
-    beerRuns: {type: Schema.Types.ObjectId, ref: 'BeerRun'},
-    favorites: {type: Schema.Types.ObjectId, ref: 'BeerRun'},
+    beerRuns: [{type: Schema.Types.ObjectId, ref: 'BeerRun'}],
+    favorites: [{type: Schema.Types.ObjectId, ref: 'BeerRun'}],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

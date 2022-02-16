@@ -8,8 +8,14 @@
 </div>
 
 <h1>Profile Page</h1>
-{{user.username}}
+{{#with user}}
+  {{username}}
+  {{this}}
+{{/with}}
 
+{{#each beerRuns}}
+  {{this}}
+{{/each}}
 
 <form action="/home" method="POST">
     <button>Logout</button>
