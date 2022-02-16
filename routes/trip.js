@@ -25,14 +25,18 @@ router.post('/trip/create', (req, res, next) => {
         let startLocation = [startLongitudePoint, startLatitudePoint];
         let endLocation = [endLongitudePoint, endLatitudePoint];
 
-        BeerRun.create({ name, bars, startLocation, endLocation })
+        return BeerRun.create({ name, bars, startLocation, endLocation })
     })
-    .then(res.render('/trip-details'))
+    .then(beerRun => {
+        res.redirect(`/trip/${beerRun._id}`)
+    })
+        
     .catch(err => next(err));
 });
 
 router.get('/trip/:id', (req, res, next) => {
     const id = req.params.id
+    console.log(id)
     BeerRun.findById(id)
         .then(beerRun => {
             let bars = beerRun.bars;
