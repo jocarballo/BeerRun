@@ -1,15 +1,34 @@
 const router = require("express").Router();
 const BeerRun = require('../models/BeerRun.model');
+const axios = require('axios')
 const { getBars } = require("../scripts/script");
+const ACCESS_TOKEN = "pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ";
 
 router.get('/trip/create', (req, res, next) => {
     res.render('trip-create')
 });
 
 
+router.post('/findaddress', (req,res,next) => {
+  const {addressvalue} = req.body
+  // function address(addressvalue) {
+  //   let location = document.getElementById("addressvalue").value
+    console.log(addressvalue)
+    axios
+    .get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${addressvalue}.json?access_token=${ACCESS_TOKEN}`)
+    .then(json => {
+      //here is the coordinates of the address
+      console.log(json.data.features[0].geometry.coordinates);
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }
+)
+
 router.post('/trip/create', (req, res, next) => {
     const { name, startLongitudePoint, endLongitudePoint, startLatitudePoint, endLatitudePoint } = req.body
-
+    console.log(req.body)
     // getting bars between start and end location
     getBars(
         startLocation = {
@@ -30,7 +49,7 @@ router.post('/trip/create', (req, res, next) => {
     .then(beerRun => {
         res.redirect(`/trip/${beerRun._id}`)
     })
-        
+
     .catch(err => next(err));
 });
 
@@ -53,10 +72,10 @@ router.get('/trip/:id', (req, res, next) => {
              }
 
              let markersJsonStr = JSON.stringify(markersJson);
-            
+
              console.log(markersJsonStr);
-             res.render('trip-details', 
-                { 
+             res.render('trip-details',
+                {
                     beerRun: beerRun,
                     markersJsonStr: encodeURIComponent(markersJsonStr),
                     centerCoordinates: centerCoordinates
