@@ -10,3 +10,22 @@ a {
 h1 {
   color: 15px;
 }
+section {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  margin: 10px;
+  padding: 10px;
+}
+#header {
+  height: 80vh;
+  background-color: aquamarine;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#moto {
+  text-align: center;
+}

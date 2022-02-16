@@ -1,37 +1,53 @@
-<h1>{{title}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
-
-<div id="form">
-  <h2>Signup</h2>
-  <form action="/profile" method="POST">
-
-    <label> Username
-      <input type="text" name="username" placeholder="BeerRunner" />
-    </label>
-
-    <label> Password
-      <input type="password" name="password" placeholder="********" />
-    </label>
-
-    <button type="submit">Create account</button>
-
-    {{!-- error message will be added here --}}
-  </form>
+<div id="header">
+<div id="moto">
+<h1>BeerRun</h1>
+<h2>We'll get you drunk where ever you go!</h2>
 </div>
-
-{{#each beerRuns}}
-  <p>{{this.name}}</p>
-  <a href="/trip/{{this._id}}">Trip Details</a>
-{{/each}}
-
-<h1>Log in 🔑</h1>
+</div>
+<section>
+<div class="card" style="width: 18rem;">
+ <form action="/profile" method="POST">
+ <h2>Signup</h2>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Username</label>
+    <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary">Create acount</button>
+</form>
+</div>
+<div class="card" style="width: 18rem;">
 <form action="/login" method="POST">
-	<label for="username">Username: </label>
-	<input type="text" name="username">
-	<label for="password">Password: </label>
-	<input type="password" name="password">
-	<button type="submit">Log in</button>
-	{{#if message}}
+<h2>Login</h2>
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" id="password">
+  </div>
+  {{#if message}}
 		<p>{{message}}</p>
 	{{/if}}
+  <button type="submit" class="btn btn-primary">Login</button>
 </form>
+</div>
+
+
+
+{{#each beerRuns}}
+
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{this.name}}</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="/trip/{{this._id}}" class="btn btn-primary">View trip</a>
+  </div>
+</div>
+  {{/each}}
+</section>
