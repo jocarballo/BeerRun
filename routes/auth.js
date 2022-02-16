@@ -37,6 +37,7 @@ router.post('/profile', (req, res, next) => {
 });
 
 router.post('/login', (req,res,next) => {
+   console.log('SESSION =====> ', req.session);
   const {username, password} = req.body
   User.findOne({username})
   .then(userFromDB => {
@@ -45,6 +46,7 @@ router.post('/login', (req,res,next) => {
       res.render('index')
       return
     } else if (bcryptjs.compareSync(password, userFromDB.passwordHash)) {
+      req.session.currentUser = userFromDB;
       res.render('profile', {user: userFromDB})
     }
   })
