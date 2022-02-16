@@ -47,15 +47,15 @@ router.post('/login', (req,res,next) => {
       return
     } else if (bcryptjs.compareSync(password, userFromDB.passwordHash)) {
       req.session.currentUser = userFromDB;
-      res.render('profile', {user: userFromDB})
+      res.redirect('/profile');
     }
   })
 })
 
-router.post('/home', (req,res,next) => {
-  req.session.destroy(err => {
-    if (err) next(err);
-    res.redirect('/home')
-  })
-})
+// router.post('/home', (req,res,next) => {
+  // req.session.destroy(err => {
+  //   if (err) next(err);
+  //   res.redirect('/home')
+  // })
+// })
 module.exports = router;

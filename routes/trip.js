@@ -4,10 +4,6 @@ const axios = require('axios')
 const { getBars } = require("../scripts/script");
 const ACCESS_TOKEN = "pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ";
 
-router.get('/trip/create', (req, res, next) => {
-    res.render('trip-create')
-});
-
 
 router.post('/findaddress', (req,res,next) => {
   const {addressvalue} = req.body
@@ -57,7 +53,14 @@ router.get('/trip/:id', (req, res, next) => {
     const id = req.params.id
     console.log(id)
     BeerRun.findById(id)
+        .populate({
+            path: "reviews",
+            populate: {
+                path: "user"
+            }
+        })
         .then(beerRun => {
+            console.log(beerRun);
             let bars = beerRun.bars;
 
             // extract information to center map
