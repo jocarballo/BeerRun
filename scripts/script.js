@@ -49,7 +49,20 @@ function getBars(startLocation, endLocation) {
     let locations = getPointsBetweenLocations(startLocation, endLocation);
 
     return Promise.all(locations.map(location => getNearestBar(location.latitude, location.longitude)))
+            .then(bars => {
+              // removing duplicates
+              const distinctBars = [];    
+              const seenBars = new Map();
+              for (const bar of bars) {
+                  if(!seenBars.has(bar.id)){
+                      seenBars.set(bar.id, true);
+                      distinctBars.push(bar);
+                  }
+              }
+              return distinctBars;
+          })
 }
+
 
 module.exports = { getBars };
   
