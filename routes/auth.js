@@ -58,10 +58,4 @@ router.post('/home', (req,res,next) => {
     res.redirect('/home')
   })
 })
-
-
-
-
-
-
 module.exports = router;
