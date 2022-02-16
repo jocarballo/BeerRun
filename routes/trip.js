@@ -27,7 +27,7 @@ router.post('/trip/create', (req, res, next) => {
 
         BeerRun.create({ name, bars, startLocation, endLocation })
     })
-    .then(res.redirect('/home'))
+    .then(res.render('/trip-details'))
     .catch(err => next(err));
 });
 
