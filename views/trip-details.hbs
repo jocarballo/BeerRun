@@ -19,7 +19,7 @@
       });
 
       // need to decode JSON 
-      var decodedJsonStr = decodeURIComponent("{{{markersJsonStr}}}");
+      let decodedJsonStr = decodeURIComponent("{{{markersJsonStr}}}");
       // create object with geo information from json string
       const geojson = JSON.parse(decodedJsonStr);
       console.log("Geo", geojson);
@@ -30,8 +30,16 @@
          const el = document.createElement('div');
          el.className = 'marker';
 
+        // Create a popup
+        const popup = new mapboxgl.Popup({ offset: 25 })
+          .setText(feature.place_name);
+
         // make a marker for each feature and add to the map
-        new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+        new mapboxgl.Marker(el)
+          .setLngLat(feature.geometry.coordinates)
+          .setPopup(popup)
+          .addTo(map);
       }
+
 
       </script>
