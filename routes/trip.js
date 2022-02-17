@@ -5,7 +5,7 @@ const { getBars } = require("../scripts/script");
 const ACCESS_TOKEN = "pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ";
 
 
-router.post('/findaddress', (req,res,next) => {
+/*router.post('/findaddress', (req,res,next) => {
   const {addressvalue} = req.body
   // function address(addressvalue) {
   //   let location = document.getElementById("addressvalue").value
@@ -20,7 +20,7 @@ router.post('/findaddress', (req,res,next) => {
       console.error(error)
     })
   }
-)
+)*/
 
 router.post('/trip/create', (req, res, next) => {
     const { name, startLongitudePoint, endLongitudePoint, startLatitudePoint, endLatitudePoint } = req.body
