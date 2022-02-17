@@ -11,10 +11,10 @@
       <!-- links from mapbox-->
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
       <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+      <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
       <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
-      
-      <!-- Include the GL JS CSS file -->
       <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+      <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css" rel="stylesheet" >
 
       <!-- mapbox-->
       <style>
@@ -26,8 +26,15 @@
 
       #map {
         position: absolute;
-        width: 50%;
-        height: 50%;
+        width: 40%;
+        height: 40%;
+        margin-left: 30%;
+        
+      }
+
+      .review-rating {
+        padding-top: 350px;
+        padding-left: 50px;
       }
 
       .mapboxgl-popup {
@@ -42,6 +49,14 @@
          height: 50px;
          border-radius: 50%;
          cursor: pointer;
+      }
+
+      #geocoder {
+         z-index: 1;
+         margin: 20px;
+      }
+      .mapboxgl-ctrl-geocoder {
+         min-width: 100%;
       }
 
     </style>
