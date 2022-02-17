@@ -49,26 +49,18 @@ section {
 .logout{
   margin: 20px;
 }
-.row {
-  margin: 10px;
-  padding: 10px;
-
-  position: absolute;
-  bottom: 0;
-  left: 30px;
-  background-color: gold;
-
-}
 
 .searchfields{
   display: flex;
   padding: 20px;
 }
+
 #map {
   position: absolute;
-  width: 40%;
-  height: 40%;
-  margin-left: 30%;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
 
 }
 
@@ -97,4 +89,32 @@ section {
 }
 .mapboxgl-ctrl-geocoder {
     min-width: 100%;
+}
+
+.review-item {
+  height: 150px;
+}
+
+.section-header {
+  color: black;
+  font-size: 24px;
+}
+
+#details-left-section {
+  width: 50%;
+  padding-left: 24px;
+  padding-top: 12px;
+}
+
+.details-header {
+  padding-top: 12px
+}
+
+.profile-runs-header {
+  padding-left: 24px;
+}
+
+.profile-input {
+  margin-top: auto;
+  margin-bottom: auto;
 }

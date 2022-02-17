@@ -1,32 +1,72 @@
-<h2>The Beer Run {{beerRun.name}} is right here!</h2>
 
 <div id="map"></div>
 
-{{#each beerRun.reviews}}
-  <p>
-    {{this.user.username}}
-    {{this.comment}}
-  </p>
-{{/each}}
+<div id="details-left-section">
+  <div>
+    <h2 class="details-header">BeerRun</h2>
+    <p>{{beerRun.name}}</p>
+  </div>
 
-<div class="review-rating">
-  <div class="col-md-3"></div>
-  <div class="col-md-6 well">
-    <hr style="border-top:1px dotted #ccc;" />
-    <div class="col-md-4">
-      <br />
-      <div class="form-group">
-        <h5>Review:</h5>
-        <form action="/trip/{{beerRun._id}}/review" method="post">
-          <input type="text" name="review" />
-          <button type="submit">Submit</button>
-        </form>
+
+  {{! Bars }}
+  <div id="bars-section">
+    <h2 class="details-header">Bars</h2>
+    <ul class="list-group list-group-flush">
+      {{#each barNames}}
+        <li class="list-group-item">{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
+
+  {{! Review Submission }}
+  <h2 class="details-header">Feedback</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+            <p class="card-text">Tell us what you think of the beer.</p>
+
+            <div class="form-group">
+              <form action="/trip/{{beerRun._id}}/review" method="post">
+                <div class="col-md-12">
+                  <textarea
+                    class="form-control"
+                    name="review"
+                    type="text"
+                    rows="3"
+                    placeholder="Feedback"
+                    required
+                  ></textarea>
+                </div>
+                <div class="col-md-12 mt-2">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div id="result"></div>
+
+  {{! Reviews List }}
+  <div>
+    <div class="container">
+      <div class="row">
+        {{#each beerRun.reviews}}
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{this.user.username}}</h5>
+                <p class="card-text">{{this.comment}}</p>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
     </div>
   </div>
+
 </div>
 
 

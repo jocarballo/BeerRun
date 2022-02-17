@@ -65,15 +65,6 @@
       <img src="/images/cardImage.jpeg" class="card-img-top" alt="" />
       <div class="card-body">
         <h5 class="card-title">{{this.name}}</h5>
-        {{!-- <p class="card-text">{{this.bars}}</p> --}}
-        {{!-- <p class="card-text"> --}}
-          <p>Bars on this route</p>
-          {{#each this.bars}}
-          <ul>
-            <li class="card-text">{{text}}</li>
-          </ul>
-          {{/each}}
-        {{!-- </p> --}}
         <a href="/trip/{{this._id}}" class="btn btn-primary">View trip</a>
       </div>
     </div>
