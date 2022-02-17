@@ -14,9 +14,9 @@ router.post('/trip/:id/review', (req, res, next) => {
 
     Review.create({ comment: review, user: user._id })
         .then(review => {
-            return BeerRun.findByIdAndUpdate(beerRunId, { $push: { reviews: review._id}})
+            return BeerRun.findByIdAndUpdate(beerRunId, { $push: { reviews: review._id}}, {new: true})
         })
-        .then(res.redirect('back'))
+        .then(review => { res.redirect(`/trip/${beerRunId}`)})
         .catch(err => console.error(err));
 });
 
