@@ -13,6 +13,7 @@
        <input type="text" name="name" placeholder="BeerRunner" />
       </label>
 
+
       <label> Start Latitude
        <input type="text" name="startLatitudePoint" value="52.511963803319404"/>
       </label>
@@ -33,6 +34,99 @@
 </div>
 </div>
     {{!-- error message will be added here --}}
+  </form>
+</div>
+
+<div class="container">
+      <nav class="nav-bar">
+        <ul>
+          <a href="/home" class="navItem">Home</a>
+        </ul>
+      </nav>
+</div>
+
+<h1>Profile Page</h1>
+{{user.username}}
+
+
+<form action="/findaddress" method="post">
+  <input type="text"  name="addressvalue">
+  <button type="submit" >search address</button>
+</form>
+
+<p>Start Location</p>
+<div id="startGeocoder"></div>
+<p>End Location</p>
+<div id="endGeocoder"></div>
+<pre id="result"></pre>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ';
+
+const startGeocoder = new MapboxGeocoder({
+  accessToken: mapboxgl.accessToken,
+  types: 'address'
+});
+ 
+startGeocoder.addTo('#startGeocoder');  
+startGeocoder.on('result', (e) => {
+    let latitude = e.result.geometry.coordinates[1];
+    let longitude = e.result.geometry.coordinates[0];
+
+    let startLatitudeElem = document.querySelector('[name="startLatitudePoint"]');
+    let startLongitudeElem = document.querySelector('[name="startLongitudePoint"]');
+
+    startLatitudeElem.setAttribute('value', latitude);
+    startLongitudeElem.setAttribute('value', longitude);
+});
+ 
+// Clear results container when search is cleared.
+startGeocoder.on('clear', () => {
+  
+});
+
+const endGeocoder = new MapboxGeocoder({
+  accessToken: mapboxgl.accessToken,
+  types: 'address'
+});
+ 
+endGeocoder.addTo('#endGeocoder');  
+endGeocoder.on('result', (e) => {
+    let latitude = e.result.geometry.coordinates[1];
+    let longitude = e.result.geometry.coordinates[0];
+
+    let endLatitudeElem = document.querySelector('[name="endLatitudePoint"]');
+    let endLongitudeElem = document.querySelector('[name="endLongitudePoint"]');
+
+    endLatitudeElem.setAttribute('value', latitude);
+    endLongitudeElem.setAttribute('value', longitude);
+});
+
+// Clear results container when search is cleared.
+endGeocoder.on('clear', () => {
+  
+});
+</script>
+
+<form action="/home" method="POST">
+    <button>Logout</button>
+</form>
+
+
+<div id="form">
+  <h2>Create your own Trip here!</h2>
+  <form action="/trip/create" method="POST">
+
+    <label> Name
+      <input type="text" name="name" placeholder="BeerRunner" />
+    </label>
+
+    <input type="hidden" name="startLatitudePoint" value="52.510503080857056"/>
+    <input type="hidden" name="startLongitudePoint" value="13.411238339071419"/>
+    <input type="hidden" name="endLatitudePoint" value="52.510503080857056"/>    
+    <input type="hidden" name="endLongitudePoint" value="13.40753800326165"/>
+
+
 
 
   <section>   
@@ -82,3 +176,5 @@
 
 </section> 
   
+
+

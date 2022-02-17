@@ -7,7 +7,7 @@ const beerRunSchema = new Schema(
     bars: [Map],
     startLocation: [Number],
     endLocation: [Number],
-    reviews: {type: Schema.Types.ObjectId, ref: 'Review'},
+    reviews: [{type: Schema.Types.ObjectId, ref: 'Review'}],
 
   },
   {

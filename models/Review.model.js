@@ -4,9 +4,7 @@ const { Schema, model } = require("mongoose");
 const reviewSchema = new Schema(
   {
     comment: String,
-    rating: Number,
-    photos: Array,
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    user: {type: Schema.Types.ObjectId, ref: 'User'}
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

@@ -1,9 +1,14 @@
-<h2>Here you can find all of the details about {{beerRun.name}}!</h2>
+<h2>The Beer Run {{beerRun.name}} is right here!</h2>
 
  <div id='map'></div>
 
-      <script>
+ {{#each beerRun.reviews}} 
+    <p>
+      {{this.user.username}} {{this.comment}}
+    </p>
+ {{/each}}
 
+<script>
       mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ';
 
       const center = [
@@ -40,6 +45,26 @@
           .setPopup(popup)
           .addTo(map);
       }
+</script>
+<div class="review-rating">
+	<div class="col-md-3"></div>
+	<div class="col-md-6 well">
+		<hr style="border-top:1px dotted #ccc;"/>
+		<div class="col-md-4">
+			<br />
+			<div class="form-group">
+				<h5>Review:</h5>
+        <form action="/trip/{{beerRun._id}}/review" method="post">
+            <input type="text"  name="review">
+            <button type="submit" >Submit</button>
+        </form>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div id="result"></div>
+		</div>
+	</div>
+<script src="scripts/script.js"></script>
+</div>
 
 
-      </script>
