@@ -50,10 +50,10 @@ router.post("/login", (req, res, next) => {
   });
 });
 
-// router.post('/home', (req,res,next) => {
-// req.session.destroy(err => {
-//   if (err) next(err);
-//   res.redirect('/home')
-// })
-// })
+router.post('/home', (req,res,next) => {
+req.session.destroy(err => {
+  if (err) next(err);
+  res.redirect('/home')
+})
+})
 module.exports = router;
