@@ -67,8 +67,10 @@ router.get('/trip/:id', (req, res, next) => {
             }
         })
         .then(beerRun => {
-            console.log(beerRun);
             let bars = beerRun.bars;
+            console.log(bars);
+
+            let barNames = bars.map(bar => bar.get("place_name"));
 
             // extract information to center map
             let barAtCenter = bars[Math.round((bars.length - 1) / 2)];
@@ -79,6 +81,7 @@ router.get('/trip/:id', (req, res, next) => {
              res.render('trip-details',
                 {
                     beerRun: beerRun,
+                    barNames: barNames,
                     // we transform objects into strings, so HBS can put them inside the javascript
                     barsArray: JSON.stringify(barsArray),
                     centerCoordinates: JSON.stringify(centerCoordinates)

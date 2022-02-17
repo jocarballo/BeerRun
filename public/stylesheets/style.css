@@ -95,21 +95,17 @@ section {
   height: 150px;
 }
 
-#reviews-container {
-  width: 50%;
-}
-
-#review-submission-container {
-  width: 50%;
-}
-
 .section-header {
-  padding-left: 24px;
   color: black;
   font-size: 24px;
 }
 
-#beer-run-header {
-    margin-left: 24px;
-    margin-top: 24px;
+#details-left-section {
+  width: 50%;
+  padding-left: 24px;
+  padding-top: 12px;
+}
+
+.details-header {
+  padding-top: 12px
 }
