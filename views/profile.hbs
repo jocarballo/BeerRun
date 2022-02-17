@@ -4,6 +4,9 @@
         <button class="btn btn-danger">Logout</button>
     </form>
   </nav>
+
+<p>Hello {{user.username}}</p>
+
      <form action="/trip/create" method="post">
       <div class="row mb-3" style="width: 18rem;">
         <label> Name
@@ -27,9 +30,8 @@
 </div>
 
 <h1>{{user.username}}</h1>
-<p>this is the user details {{user}}</p>
 
-
+<p>All Beer Runs</p>
 {{#each beerRuns}}
   <div class="card" style="width: 18rem;">
     <img src="..." class="card-img-top" alt="..." />
@@ -41,10 +43,6 @@
     </div>
   </div>
 {{/each}}
-
-
-
-
 
 
 <script>
