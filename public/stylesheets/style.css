@@ -109,3 +109,12 @@ section {
 .details-header {
   padding-top: 12px
 }
+
+.profile-runs-header {
+  padding-left: 24px;
+}
+
+.profile-input {
+  margin-top: auto;
+  margin-bottom: auto;
+}
