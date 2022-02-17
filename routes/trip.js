@@ -25,6 +25,12 @@ const ACCESS_TOKEN = "pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWV
 router.post('/trip/create', (req, res, next) => {
     const { name, startLongitudePoint, endLongitudePoint, startLatitudePoint, endLatitudePoint } = req.body
     console.log(req.body)
+
+    if(req.session.currentUser == undefined) {
+        res.redirect("/home");
+        return
+    }
+    
     // getting bars between start and end location
     getBars(
         startLocation = {
@@ -39,8 +45,9 @@ router.post('/trip/create', (req, res, next) => {
         console.log("filtered bars", bars);
         let startLocation = [startLongitudePoint, startLatitudePoint];
         let endLocation = [endLongitudePoint, endLatitudePoint];
+        let creator = req.session.currentUser._id;
 
-        return BeerRun.create({ name, bars, startLocation, endLocation })
+        return BeerRun.create({ name, bars, startLocation, endLocation, creator })
     })
     .then(beerRun => {
         res.redirect(`/trip/${beerRun._id}`)
