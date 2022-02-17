@@ -29,11 +29,16 @@ router.post("/profile", (req, res, next) => {
       });
     })
     .then((userFromDB) => {
+      req.session.currentUser = userFromDB;
       console.log("Newly created user is: ", userFromDB);
-      res.render("profile", { user: userFromDB });
+      res.redirect("/profile");
     })
     .catch((error) => next(error));
 });
+
+
+
+
 
 router.post("/login", (req, res, next) => {
   console.log("SESSION =====> ", req.session);
@@ -49,6 +54,18 @@ router.post("/login", (req, res, next) => {
     }
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.post('/home', (req,res,next) => {
 req.session.destroy(err => {

@@ -1,4 +1,6 @@
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const DB_URL = process.env.MONGODB_URI;
 
 module.exports = app => {
   // <== app is just a placeholder here
@@ -9,17 +11,30 @@ module.exports = app => {
   app.set('trust proxy', 1);
 
   // use session
+  // app.use(
+  //   session({
+  //     secret: process.env.SESS_SECRET,
+  //     resave: true,
+  //     saveUninitialized: false,
+  //     cookie: {
+  //       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  //       secure: process.env.NODE_ENV === 'production',
+  //       httpOnly: true,
+  //       maxAge: 60 * 1000 * 60 * 24 // 60 * 1000 ms === 1 min
+  //     }
+  //   })
+  // );
+
+
   app.use(
-    session({
-      secret: process.env.SESS_SECRET,
-      resave: true,
-      saveUninitialized: false,
-      cookie: {
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === 'production',
-        httpOnly: true,
-        maxAge: 60 * 1000 * 60 * 24 // 60 * 1000 ms === 1 min
-      }
-    })
-  );
+  session({
+    secret: process.env.SESS_SECRET,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    resave: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: DB_URL,
+    }),
+  })
+);
 };
