@@ -1,13 +1,26 @@
 const router = require("express").Router();
+const { redirect } = require("express/lib/response");
+const BeerRun = require("../models/BeerRun.model");
 
 /* GET profile */
 router.get("/profile", (req, res, next) => {
-  // const user = req.session.
-  console.log("session info " + req.session.currentUser[0]);
-    // res.render("profile");
-    // console.log(req.body)
-});
+    let user = req.session.currentUser;
 
+    if(user == undefined) {
+        res.redirect("/home");
+        return
+    }
+
+    BeerRun.find()
+        .then(beerRuns => {
+            let userBeerRuns = beerRuns.filter(beerRun => beerRun.creator == user._id);
+            res.render("profile", {
+                beerRuns: beerRuns,
+                userBeerRuns: userBeerRuns
+            });
+        })
+        .catch(err => next(err));
+});
 
 
 module.exports = router;

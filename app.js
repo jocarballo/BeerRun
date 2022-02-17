@@ -24,7 +24,6 @@ require('./config/session.config')(app);
 // default value for title local
 const projectName = "BeerRun";
 
-
 app.locals.title = `${projectName} created with IronLauncher`;
 
 // 👇 Start handling routes here
@@ -45,6 +44,10 @@ app.use('/', tripsRouter);
 const reviewRouter = require('./routes/review.js');
 app.use('/', reviewRouter);
 
+// Example:
+// To get profile-geocoder, you need: static/js/profile-geocoder.js
+// Source: https://stackoverflow.com/questions/5924072/express-js-cant-get-my-static-files-why
+app.use('/static', express.static(__dirname + '/public'));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

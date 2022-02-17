@@ -1,70 +1,59 @@
 <h2>The Beer Run {{beerRun.name}} is right here!</h2>
 
- <div id='map'></div>
+<div id="map"></div>
 
- {{#each beerRun.reviews}} 
-    <p>
-      {{this.user.username}} {{this.comment}}
-    </p>
- {{/each}}
+{{#each beerRun.reviews}}
+  <p>
+    {{this.user.username}}
+    {{this.comment}}
+  </p>
+{{/each}}
 
-<script>
-      mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ';
-
-      const center = [
-        {{#each centerCoordinates}}
-          {{this}},
-        {{/each}}
-      ]
-      const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/light-v10',
-        center: center,
-        zoom: 12
-      });
-
-      // need to decode JSON 
-      let decodedJsonStr = decodeURIComponent("{{{markersJsonStr}}}");
-      // create object with geo information from json string
-      const geojson = JSON.parse(decodedJsonStr);
-      console.log("Geo", geojson);
-
-      // add markers to map
-      for (const feature of geojson.features) {
-        // create a HTML element for each feature
-         const el = document.createElement('div');
-         el.className = 'marker';
-
-        // Create a popup
-        const popup = new mapboxgl.Popup({ offset: 25 })
-          .setText(feature.place_name);
-
-        // make a marker for each feature and add to the map
-        new mapboxgl.Marker(el)
-          .setLngLat(feature.geometry.coordinates)
-          .setPopup(popup)
-          .addTo(map);
-      }
-</script>
 <div class="review-rating">
-	<div class="col-md-3"></div>
-	<div class="col-md-6 well">
-		<hr style="border-top:1px dotted #ccc;"/>
-		<div class="col-md-4">
-			<br />
-			<div class="form-group">
-				<h5>Review:</h5>
+  <div class="col-md-3"></div>
+  <div class="col-md-6 well">
+    <hr style="border-top:1px dotted #ccc;" />
+    <div class="col-md-4">
+      <br />
+      <div class="form-group">
+        <h5>Review:</h5>
         <form action="/trip/{{beerRun._id}}/review" method="post">
-            <input type="text"  name="review">
-            <button type="submit" >Submit</button>
+          <input type="text" name="review" />
+          <button type="submit">Submit</button>
         </form>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div id="result"></div>
-		</div>
-	</div>
-<script src="scripts/script.js"></script>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div id="result"></div>
+    </div>
+  </div>
 </div>
 
 
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ';
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: {{{centerCoordinates}}},
+  zoom: 12
+});
+
+// will create a marker with popup for each of the bars
+for (const bar of {{{barsArray}}}) {
+  // create a HTML styled element for the marker
+   const el = document.createElement('div');
+   el.className = 'marker';
+
+  // create a popup with the bar name
+  const popup = new mapboxgl.Popup({ offset: 25 })
+    .setText(bar.place_name);
+
+  // create the Marker object and add location and popup information
+  new mapboxgl.Marker(el)
+    .setLngLat(bar.geometry.coordinates)
+    .setPopup(popup)
+    .addTo(map);
+}
+</script>
