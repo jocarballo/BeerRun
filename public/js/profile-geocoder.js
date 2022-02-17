@@ -3,7 +3,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvM
 // START LOCATION
 const startGeocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
-  types: 'address'
+  types: 'address',
+  placeholder: 'Start Location'
 });
 
 startGeocoder.addTo('#startGeocoder');
@@ -21,7 +22,8 @@ startGeocoder.on('result', (e) => {
 // END LOCATION
 const endGeocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
-  types: 'address'
+  types: 'address',
+  placeholder: 'End Location'
 });
 
 endGeocoder.addTo('#endGeocoder');

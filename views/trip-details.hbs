@@ -1,23 +1,62 @@
-<h2>The Beer Run {{beerRun.name}} is right here!</h2>
 
-<div id="map" class="fullwidth"></div>
+<div id="beer-run-header">
+  <h2>BeerRun</h2>
+  <p>{{beerRun.name}}</p>
+</div>
 
-{{#each beerRun.reviews}}
-  <p>
-    {{this.user.username}}
-    {{this.comment}}
-  </p>
-{{/each}}
+<div id="map"></div>
 
-<div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 18rem;">
-  <h5 class="card-title">Share your feedback</h5>
-  <p class="card-text">Tell us what you think of the beer.</p>
+{{! Review Submission }}
+<div id="review-submission-container">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div
+          class="card shadow-sm p-3 mb-5 bg-white rounded"
+        >
+          <h5 class="card-title">Share your feedback</h5>
+          <p class="card-text">Tell us what you think of the beer.</p>
 
-  <div class="form-group">
-    <form action="/trip/{{beerRun._id}}/review" method="post">
-      <input type="text" class0"form-control mb-2 mr-sm-2" name="review" />
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+          <div class="form-group">
+            <form action="/trip/{{beerRun._id}}/review" method="post">
+              <div class="col-md-12">
+                <textarea
+                  class="form-control"
+                  name="review"
+                  type="text"
+                  rows="3"
+                  placeholder="Feedback"
+                  required
+                ></textarea>
+              </div>
+              <div class="col-md-12 mt-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{! Reviews List }}
+<p class="section-header">User Reviews</p>
+
+<div id="reviews-container">
+  <div class="container">
+    <div class="row">
+      {{#each beerRun.reviews}}
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{this.user.username}}</h5>
+              <p class="card-text">{{this.comment}}</p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
   </div>
 </div>
 
