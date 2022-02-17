@@ -16,7 +16,8 @@ router.get("/profile", (req, res, next) => {
             let userBeerRuns = beerRuns.filter(beerRun => beerRun.creator == user._id);
             res.render("profile", {
                 beerRuns: beerRuns,
-                userBeerRuns: userBeerRuns
+                userBeerRuns: userBeerRuns,
+                user
             });
         })
         .catch(err => next(err));
