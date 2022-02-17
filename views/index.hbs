@@ -5,7 +5,7 @@
   </div>
 </div>
 <section>
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 45%;">
     <form action="/profile" method="POST">
       <h2>Signup</h2>
       <div class="mb-3">
@@ -27,10 +27,10 @@
           id="exampleInputPassword1"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Create acount</button>
+      <button type="submit" class="btn btn-danger fullwidth ">Create Account</button>
     </form>
   </div>
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 45%;">
     <form action="/login" method="POST">
       <h2>Login</h2>
       <div class="mb-3">
@@ -55,18 +55,25 @@
       {{#if message}}
         <p>{{message}}</p>
       {{/if}}
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-danger fullwidth">Login</button>
     </form>
   </div>
 
   {{#each beerRuns}}
-
+{{!-- {{this}} --}}
     <div class="card" style="width: 18rem;">
-      <img src="../public/images/header_image.jpeg" class="card-img-top" alt="" />
+      <img src="/images/cardImage.jpeg" class="card-img-top" alt="" />
       <div class="card-body">
         <h5 class="card-title">{{this.name}}</h5>
-        <p class="card-text">Some quick example text to build on the card title
-          and make up the bulk of the card's content.</p>
+        {{!-- <p class="card-text">{{this.bars}}</p> --}}
+        {{!-- <p class="card-text"> --}}
+          <p>Bars on this route</p>
+          {{#each this.bars}}
+          <ul>
+            <li class="card-text">{{text}}</li>
+          </ul>
+          {{/each}}
+        {{!-- </p> --}}
         <a href="/trip/{{this._id}}" class="btn btn-primary">View trip</a>
       </div>
     </div>
