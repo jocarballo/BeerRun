@@ -1,16 +1,19 @@
 body {
-  padding: 50px;
   margin: 0;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.fullwidth {
+  width: 100%;
 }
 
 a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
+#moto > h1 {
+  font-size: 200px;
 }
 section {
   flex-wrap: wrap;
@@ -27,27 +30,40 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-image: url('../images/header_image.jpeg'); */
+  background-image: url('../images/header_background.png');
 }
 #moto {
   text-align: center;
 }
 #head {
-  height: 80vh;
+  height: 50vh;
   background-color: aquamarine;
   display: flex;
+  background-image: url('../images/header_background.png');
+  position: relative;
+}
+.userinfo {
+  margin: 20px;
+}
+
+.logout{
+  margin: 20px;
 }
 .row {
   margin: 10px;
   padding: 10px;
-  display: flex;
-  justify-content: center;
+
   position: absolute;
-    top: 200px;
-    left: 60px;
-    background-color: gold;
+  bottom: 0;
+  left: 30px;
+  background-color: gold;
+
 }
 
+.searchfields{
+  display: flex;
+  padding: 20px;
+}
 #map {
   position: absolute;
   width: 40%;
