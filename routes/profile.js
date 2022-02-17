@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { redirect } = require("express/lib/response");
-const BeerRun = require("../models/BeerRun.model"); 
+const BeerRun = require("../models/BeerRun.model");
 
 /* GET profile */
 router.get("/profile", (req, res, next) => {
@@ -16,7 +16,8 @@ router.get("/profile", (req, res, next) => {
             let userBeerRuns = beerRuns.filter(beerRun => beerRun.creator == user._id);
             res.render("profile", {
                 beerRuns: beerRuns,
-                userBeerRuns: userBeerRuns
+                userBeerRuns: userBeerRuns,
+                user
             });
         })
         .catch(err => next(err));
