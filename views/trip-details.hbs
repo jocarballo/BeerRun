@@ -1,6 +1,6 @@
 <h2>The Beer Run {{beerRun.name}} is right here!</h2>
 
-<div id="map"></div>
+<div id="map" class="fullwidth"></div>
 
 {{#each beerRun.reviews}}
   <p>
@@ -9,26 +9,17 @@
   </p>
 {{/each}}
 
-<div class="review-rating">
-  <div class="col-md-3"></div>
-  <div class="col-md-6 well">
-    <hr style="border-top:1px dotted #ccc;" />
-    <div class="col-md-4">
-      <br />
-      <div class="form-group">
-        <h5>Review:</h5>
-        <form action="/trip/{{beerRun._id}}/review" method="post">
-          <input type="text" name="review" />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div id="result"></div>
-    </div>
+<div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 18rem;">
+  <h5 class="card-title">Share your feedback</h5>
+  <p class="card-text">Tell us what you think of the beer.</p>
+
+  <div class="form-group">
+    <form action="/trip/{{beerRun._id}}/review" method="post">
+      <input type="text" class0"form-control mb-2 mr-sm-2" name="review" />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
 </div>
-
 
 <script>
   mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ';
