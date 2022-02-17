@@ -4,32 +4,23 @@
      <button type="button" class="btn btn-link"><a href="/home" class="navItem">Home</a></button>
      </ul>
      </nav>
-     <form>
- 
+     <form action="/trip/create" method="post">
       <div class="row mb-3" style="width: 18rem;">
-      
-      <label> Name
-       <input type="text" name="name" placeholder="BeerRunner" />
-      </label>
+        <label> Name
+        <input type="text" name="name" placeholder="BeerRunner" />
+        </label>
 
-
-      <label> Start Latitude
-       <input type="text" name="startLatitudePoint" value="52.511963803319404"/>
-      </label>
-
-     <label> Start Longitude
-      <input type="text" name="startLongitudePoint" value="13.411238339071419"/>
-    </label>
-
-    <label> End Latitude
-      <input type="text" name="endLatitudePoint" value="52.510503080857056"/>
-    </label>
-
-    <label> End Longitude
-      <input type="text" name="endLongitudePoint" value="13.40753800326165"/>
-    </label>
-    <button type="submit" class="btn btn-success">Create Trip</button>
-    
+        <p>Start Location</p>
+        <div id="startGeocoder"></div>
+        <p>End Location</p>
+        <div id="endGeocoder"></div>
+        <input type="hidden" name="startLatitudePoint" value="52.510503080857056"/>
+        <input type="hidden" name="startLongitudePoint" value="13.411238339071419"/>
+        <input type="hidden" name="endLatitudePoint" value="52.510503080857056"/>    
+        <input type="hidden" name="endLongitudePoint" value="13.40753800326165"/>
+        <button type="submit" class="btn btn-success">Create Trip</button>
+      </div>
+     </form>
 </div>
 </div>
     {{!-- error message will be added here --}}
@@ -47,17 +38,6 @@
 <h1>Profile Page</h1>
 {{user.username}}
 
-
-<form action="/findaddress" method="post">
-  <input type="text"  name="addressvalue">
-  <button type="submit" >search address</button>
-</form>
-
-<p>Start Location</p>
-<div id="startGeocoder"></div>
-<p>End Location</p>
-<div id="endGeocoder"></div>
-<pre id="result"></pre>
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jYXJiYWxsbyIsImEiOiJja3puMzVsaWM0YTl2MzBvMWVqcHJxaWhiIn0.UJWUB-BwaxMmZH4w7eSgGQ';
@@ -111,24 +91,6 @@ endGeocoder.on('clear', () => {
     <button>Logout</button>
 </form>
 
-
-<div id="form">
-  <h2>Create your own Trip here!</h2>
-  <form action="/trip/create" method="POST">
-
-    <label> Name
-      <input type="text" name="name" placeholder="BeerRunner" />
-    </label>
-
-    <input type="hidden" name="startLatitudePoint" value="52.510503080857056"/>
-    <input type="hidden" name="startLongitudePoint" value="13.411238339071419"/>
-    <input type="hidden" name="endLatitudePoint" value="52.510503080857056"/>    
-    <input type="hidden" name="endLongitudePoint" value="13.40753800326165"/>
-
-
-
-
-  <section>   
     
  {{user.username}}
 
