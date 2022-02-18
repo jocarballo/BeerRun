@@ -14,7 +14,7 @@ a {
 
 #moto > h1 {
   font-size: 200px;
-  font-family: 'Alfa Slab One', cursive;
+  font-family: 'Alfa Slab One',  sans-serif;
   color: #ff5722;
 }
 section {
@@ -24,7 +24,7 @@ section {
 }
 .card {
   margin: 10px;
-  padding: 10px;
+  padding: 10px 10px 30px 10px;
 }
 .ourinput {
   box-shadow: 1px 1px 10px rgb(214, 214, 214);
@@ -124,4 +124,11 @@ section {
 .profile-input {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+
+.trip-button {
+  position: absolute;
+  bottom: 10px;
+  /* width: 100%; */
 }
