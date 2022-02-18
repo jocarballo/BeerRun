@@ -26,6 +26,11 @@ section {
   margin: 10px;
   padding: 10px;
 }
+.ourinput {
+  box-shadow: 1px 1px 10px rgb(214, 214, 214);
+  height: 36px;
+  /* border-color: white; */
+}
 #header {
   height: 80vh;
   background-color: aquamarine;

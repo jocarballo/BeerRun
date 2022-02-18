@@ -24,7 +24,7 @@ require('./config/session.config')(app);
 // default value for title local
 const projectName = "BeerRun";
 
-app.locals.title = `${projectName} created with IronLauncher`;
+app.locals.title = `${projectName}`;
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
