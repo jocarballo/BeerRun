@@ -11,7 +11,7 @@ router.get("/profile", (req, res, next) => {
         return
     }
 
-    BeerRun.find()
+    BeerRun.find().lean()
         .then(beerRuns => {
             let userBeerRuns = beerRuns.filter(beerRun => beerRun.creator == user._id);
             res.render("profile", {

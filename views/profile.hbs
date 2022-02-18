@@ -50,6 +50,11 @@
       <img src="/images/cardImage.jpeg" class="card-img-top" alt="" />
       <div class="card-body">
         <h5 class="card-title">{{this.name}}</h5>
+        {{#each this.bars}}
+          <ul>
+            <li class="card-text">{{text}}</li>
+          </ul>
+          {{/each}}
         <a href="/trip/{{this._id}}" class="btn btn-primary">View trip</a>
       </div>
     </div>
@@ -63,6 +68,11 @@
       <img src="/images/cardImage.jpeg" class="card-img-top" alt="" />
       <div class="card-body">
         <h5 class="card-title">{{this.name}}</h5>
+        {{#each this.bars}}
+          <ul>
+            <li class="card-text">{{text}}</li>
+          </ul>
+          {{/each}}
         <a href="/trip/{{this._id}}" class="btn btn-primary">View trip</a>
       </div>
     </div>

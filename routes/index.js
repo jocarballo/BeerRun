@@ -5,7 +5,7 @@ const BeerRun = require('../models/BeerRun.model');
 /* GET home page */
 
 router.get("/home", (req, res, next) => {
-  BeerRun.find()
+  BeerRun.find().lean()
   .then(beerRuns => {
     res.render('index', { beerRuns: beerRuns })
   })
